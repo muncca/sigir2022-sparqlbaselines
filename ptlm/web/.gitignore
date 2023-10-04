@@ -1,0 +1,9 @@
+1_5k
+bart/
+base/
+bin/
+include/
+lib/
+small/
+*.csv
+__pycache__/
