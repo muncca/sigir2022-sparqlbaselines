@@ -36,11 +36,13 @@ def query():
 
     entities = []
     for item in raw_entities:
-        entities.append(item)
+        for uri in item["uris"]:
+            entities.append(uri)
 
     relations = []
     for item in raw_relations:
-        relations.append(item)
+        for uri in item["uris"]:
+            relations.append(uri)
 
     logger.debug(question)
     logger.debug(entities)
