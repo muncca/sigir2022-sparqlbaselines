@@ -1,2 +1,2 @@
 echo "Starting «Modern Baselines for SPARQL Semantic Parsing»"
-python3 app.py --split_file mix/split_mix1.pickle --model_name t5-small --save_dir small --beam_length 1 --checkpoint split_mix1_checkpoint12000.pth
+python3 app.py --checkpoint split_mix1_checkpoint11000.pth 

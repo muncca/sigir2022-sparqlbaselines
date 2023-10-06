@@ -27,12 +27,7 @@ class Model(nn.Module):
                 
 
 class Test:
-        def __init__(self,data_test,args):
-                self.test_data=data_test
-                self.split=args.split_file.split('.')[0][-1]
-                if 'mix' in args.split_file:
-                    self.split='_mix'+self.split
-
+        def __init__(self,args):
                 self.tokenizer=T5Tokenizer.from_pretrained(args.model_name)
                 self.model=nn.DataParallel(Model(args.model_name),device_ids=[args.device])
                 if torch.cuda.is_available():

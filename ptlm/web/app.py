@@ -18,21 +18,15 @@ app = Flask(__name__)
 torch.manual_seed(42)
 
 argument_parser = argparse.ArgumentParser(description='SIGIR2022-SPARQL-Baselines')
-argument_parser.add_argument("--port", help="port", default=9012, type=int, dest="port")
-argument_parser.add_argument('--split_file',type=str,default=None)
+argument_parser.add_argument("--port", help="port", default=9009, type=int, dest="port")
 argument_parser.add_argument('--model_name',type=str,default='t5-base')
 argument_parser.add_argument('--checkpoint',type=str,default=None)
 argument_parser.add_argument('--device',type=int,default=0)
-argument_parser.add_argument('--beam_length',type=int,default=10)
-argument_parser.add_argument('--save_dir',type=str,default=None)
+argument_parser.add_argument('--beam_length',type=int,default=1)
+argument_parser.add_argument('--save_dir',type=str,default='base')
 parsed_arguments = argument_parser.parse_args()
 
-file=open(parsed_arguments.split_file,'rb')
-data=pickle.load(file)
-file.close()
-
-final_data_test=data[0]
-tester=Test(final_data_test,parsed_arguments)
+tester=Test(parsed_arguments)
 
 @app.route('/api/query', methods=['POST'])
 def query():
