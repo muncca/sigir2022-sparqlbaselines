@@ -52,7 +52,7 @@ def query():
     logger.debug(entities)
     logger.debug(relations)
 
-    return jsonify(tester.test(question, entities, relations))
+    return jsonify(tester.query(question, entities, relations))
 
 if __name__ == '__main__':
     logger.info("Starting the HTTP server")

@@ -62,8 +62,6 @@ class Test:
                     self.vocab_dict['<extra_id_'+str(i)+'>']=self.sparql_vocab[i]
                 self.vocab_dict['<extra_id_17>']=''
                 
-                #self.test()
-                
         def readable(self,string):
             for key in self.vocab_dict:
                 string=string.replace(key,' '+self.vocab_dict[key]+' ')
@@ -112,14 +110,9 @@ class Test:
             print(input)            
             return input
 
-        def test(self, question, entities, relations):
+        def query(self, question, entities, relations):
                 self.model.eval()                
-                inp=[]                
-
-                #question = "What is the age of Barack Obama?"
-                #entities = ["http://dbpedia.org/resource/Barack_Obama"]
-                #relations = ["http://dbpedia.org/ontology/birthDate"]
-
+                inp=[]
                 inp.append(self.prepare_input(question, entities, relations))
 
                 input=self.preprocess_function(inp)
