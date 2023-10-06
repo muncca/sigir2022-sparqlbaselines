@@ -112,13 +112,13 @@ class Test:
             print(input)            
             return input
 
-        def test(self):
+        def test(self, question, entities, relations):
                 self.model.eval()                
                 inp=[]                
 
-                question = "What is the age of Barack Obama?"
-                entities = ["http://dbpedia.org/resource/Barack_Obama"]
-                relations = ["http://dbpedia.org/ontology/birthDate"]
+                #question = "What is the age of Barack Obama?"
+                #entities = ["http://dbpedia.org/resource/Barack_Obama"]
+                #relations = ["http://dbpedia.org/ontology/birthDate"]
 
                 inp.append(self.prepare_input(question, entities, relations))
 
@@ -138,4 +138,5 @@ class Test:
                         result['queries']. \
                         append(self.readable(out[int(k*self.beam+s)].replace('<pad>','').replace('</s>','').strip()))
                 
+                print(result)
                 return result

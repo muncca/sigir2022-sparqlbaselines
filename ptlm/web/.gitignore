@@ -6,4 +6,5 @@ include/
 lib/
 small/
 *.csv
+*.log
 __pycache__/
