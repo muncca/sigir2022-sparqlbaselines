@@ -123,8 +123,11 @@ class Test:
                 result['queries']=[]
                 for k in range(len(out)//self.beam):               
                     for s in range(self.beam):
-                        result['queries']. \
-                        append(self.readable(out[int(k*self.beam+s)].replace('<pad>','').replace('</s>','').strip()))
+                        query = {
+                          "query": self.readable(out[int(k*self.beam+s)].replace('<pad>','').replace('</s>','').strip()),
+                          "confidence": 1
+                        }
+                        result['queries'].append(query)
                 
                 print(result)
                 return result
