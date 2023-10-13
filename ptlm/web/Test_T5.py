@@ -101,8 +101,7 @@ class Test:
                     input += "<extra_id_13> <extra_id_15> "+relation+" "
                 else:
                     print("wtf is this relation???")
-
-            print(input)            
+         
             return input
 
         def query(self, question, entities, relations):
@@ -120,14 +119,17 @@ class Test:
 
 
                 result = {}
+                confidence = 1
+                confidence_step = round(1/self.beam/10, 2)
                 result['queries']=[]
                 for k in range(len(out)//self.beam):               
-                    for s in range(self.beam):
+                    for s in range(self.beam):                        
                         query = {
                           "query": self.readable(out[int(k*self.beam+s)].replace('<pad>','').replace('</s>','').strip()),
-                          "confidence": 1
+                          "confidence": confidence
                         }
                         result['queries'].append(query)
-                
-                print(result)
+                        confidence = 0.1 if round(confidence - confidence_step, 3) < 0.1 else round(confidence - confidence_step, 3)
+                        confidence_step = round(confidence_step*2, 2)
+                                
                 return result
